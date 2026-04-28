@@ -34,7 +34,7 @@ class Meshtasticd < Formula
   end
 
   service do
-    run [opt_bin/"meshtasticd", "--config", pkgetc/"config.yaml", "--fsdir", var/"meshtasticd"]
+    run [opt_bin/"meshtasticd", "--config", etc/"meshtasticd/config.yaml", "--fsdir", var/"meshtasticd"]
     keep_alive true
   end
 
