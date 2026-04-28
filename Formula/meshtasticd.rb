@@ -19,7 +19,7 @@ class Meshtasticd < Formula
   depends_on "openssl@3"
   depends_on "libusb"
   depends_on "argp-standalone"
-  depends_on "ulfius"
+  # depends_on "ulfius"
 
   def install
     system "platformio", "run", "-e", "native-macos"
