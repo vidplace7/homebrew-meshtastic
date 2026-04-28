@@ -9,7 +9,7 @@ class Meshtasticd < Formula
   head "https://github.com/meshtastic/firmware.git", branch: "master"
 
   # Only support MacOS 15+
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
   # Only support Apple Silicon (ARM64) architecture
   depends_on arch: :arm64
   depends_on "platformio" => :build
