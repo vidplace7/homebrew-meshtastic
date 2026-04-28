@@ -11,6 +11,12 @@ class Meshtasticd < Formula
   revision 1
   head "https://github.com/meshtastic/firmware.git", branch: "master"
 
+  bottle do
+    root_url "https://github.com/vidplace7/homebrew-meshtastic/releases/download/meshtasticd-2.7.23_1"
+    sha256 cellar: :any, arm64_tahoe:   "25acfec0ae518169bc40b195d524cbfdf3948ce101bf6660c05614aff208856f"
+    sha256 cellar: :any, arm64_sequoia: "08f506db2903765c5087c753a9ca78f6255c4278a6231220a32dc9d07cb968fe"
+  end
+
   depends_on "pkgconf" => :build
   depends_on "platformio" => :build
   depends_on "argp-standalone"
