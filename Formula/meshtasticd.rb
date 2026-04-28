@@ -6,20 +6,20 @@ class Meshtasticd < Formula
   version "2.7.23"
   sha256 "c0fa5e88ab038e3b98b64eb5c8c7c45e2b724055d45cb98eea4bc194a7ab50ed"
   license "GPL-3.0-only"
+  # Revise when making changes so that updates work correctly.
+  # Remove when bumping 'version'.
+  revision 1
   head "https://github.com/meshtastic/firmware.git", branch: "master"
 
+  depends_on "pkgconf" => :build
+  depends_on "platformio" => :build
+  depends_on "argp-standalone"
+  depends_on "libusb"
+  depends_on "libuv"
   # Only support MacOS 15+
   depends_on macos: :sequoia
-  # # Only support Apple Silicon (ARM64) architecture
-  # depends_on arch: :arm64
-  depends_on "platformio" => :build
-  depends_on "pkgconf" => :build
-  depends_on "yaml-cpp"
-  depends_on "libuv"
   depends_on "openssl@3"
-  depends_on "libusb"
-  depends_on "argp-standalone"
-  # depends_on "ulfius"
+  depends_on "yaml-cpp"
 
   def install
     ENV["PLATFORMIO_CORE_DIR"] = buildpath/".platformio"
@@ -44,6 +44,6 @@ class Meshtasticd < Formula
   # The test will check if meshtasticd can be executed.
   # It will also check if the version is correctly displayed.
   test do
-    assert_match version.to_s, shell_output("#{bin}/meshtasticd -v")
+    assert_match version.to_s, shell_output("#{bin}/meshtasticd --version")
   end
 end
