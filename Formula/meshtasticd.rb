@@ -25,6 +25,17 @@ class Meshtasticd < Formula
     ENV["PLATFORMIO_CORE_DIR"] = buildpath/".platformio"
     system "platformio", "run", "-e", "native-macos"
     bin.install ".pio/build/native-macos/meshtasticd"
+    (var/"meshtasticd").mkpath
+    (pkgetc/"available.d").mkpath
+    (pkgetc/"available.d").install Dir["bin/config.d/*"]
+    (pkgetc/"config.d").mkpath
+    inreplace "bin/config-dist.yaml", "/etc/meshtasticd", pkgetc
+    pkgetc.install "bin/config-dist.yaml" => "config.yaml"
+  end
+
+  service do
+    run [opt_bin/"meshtasticd", "--config", pkgetc/"config.yaml", "--fsdir", var/"meshtasticd"]
+    keep_alive true
   end
 
 #   # The test will check if meshtasticd can be executed.
