@@ -10,8 +10,8 @@ class Meshtasticd < Formula
 
   # Only support MacOS 15+
   depends_on macos: :sequoia
-  # Only support Apple Silicon (ARM64) architecture
-  depends_on arch: :arm64
+  # # Only support Apple Silicon (ARM64) architecture
+  # depends_on arch: :arm64
   depends_on "platformio" => :build
   depends_on "pkgconf" => :build
   depends_on "yaml-cpp"
