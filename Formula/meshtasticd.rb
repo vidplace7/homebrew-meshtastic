@@ -23,6 +23,9 @@ class Meshtasticd < Formula
 
   def install
     ENV["PLATFORMIO_CORE_DIR"] = buildpath/".platformio"
+    ENV["PLATFORMIO_SETTING_ENABLE_TELEMETRY"] = "0"
+    ENV["PLATFORMIO_SETTING_CHECK_PLATFORMIO_INTERVAL"] = "3650"
+    ENV["PLATFORMIO_SETTING_CHECK_PRUNE_SYSTEM_THRESHOLD"] = "10240"
     system "platformio", "run", "-e", "native-macos"
     bin.install ".pio/build/native-macos/meshtasticd"
     (var/"meshtasticd").mkpath
@@ -38,9 +41,9 @@ class Meshtasticd < Formula
     keep_alive true
   end
 
-#   # The test will check if meshtasticd can be executed.
-#   # It will also check if the version is correctly displayed.
-#   test do
-#     assert_match version.to_s, shell_output("#{bin}/meshtasticd -v")
-#   end
+  # The test will check if meshtasticd can be executed.
+  # It will also check if the version is correctly displayed.
+  test do
+    assert_match version.to_s, shell_output("#{bin}/meshtasticd -v")
+  end
 end
