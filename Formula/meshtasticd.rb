@@ -22,6 +22,7 @@ class Meshtasticd < Formula
   # depends_on "ulfius"
 
   def install
+    ENV["PLATFORMIO_CORE_DIR"] = buildpath/".platformio"
     system "platformio", "run", "-e", "native-macos"
     bin.install ".pio/build/native-macos/meshtasticd"
   end
